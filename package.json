@@ -1,0 +1,25 @@
+{
+  "name": "serverless-api-load-tester",
+  "version": "1.0.0",
+  "description": "This project is a load tester for REST APIs. It is a simple nodejs project that uses axios to send requests to the api. It is a good starting point for testing your APIs.",
+  "main": "app",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmettkartal/serverless-api-load-tester.git"
+  },
+  "author": "ahmettkartal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmettkartal/serverless-api-load-tester/issues"
+  },
+  "homepage": "https://github.com/ahmettkartal/serverless-api-load-tester#readme",
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.470.0",
+    "axios": "^1.3.5",
+    "express": "^4.18.2",
+    "serverless-http": "^3.2.0"
+  }
+}

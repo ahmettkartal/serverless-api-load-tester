@@ -1,0 +1,39 @@
+service: serverless-load-tester
+custom:
+  loadTestSqsArn: ${file(./config/config.${opt:stage}.json):LOAD_TEST_SQS_QUEUE_ARN}
+  preferredRegion: ${file(./config/config.${opt:stage}.json):PREFERRED_REGION}
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: ${self:custom.preferredRegion}
+  environment:
+    PROJECT_APP_STAGE: ${file(./config/config.${opt:stage}.json):PROJECT_APP_STAGE}
+    LOAD_TEST_SQS_QUEUE_ARN: ${file(./config/config.${opt:stage}.json):LOAD_TEST_SQS_QUEUE_ARN}
+    LOAD_TEST_SQS_QUEUE_URL: ${file(./config/config.${opt:stage}.json):LOAD_TEST_SQS_QUEUE_URL}
+    PREFERRED_REGION: ${file(./config/config.${opt:stage}.json):PREFERRED_REGION}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - sqs:ReceiveMessage
+            - sqs:DeleteMessage
+            - sqs:GetQueueAttributes
+            - sqs:SendMessage
+          Resource: "*"
+functions:
+  app:
+    handler: app.project_handler
+    events:
+      - http:
+          path: /load-tests
+          method: POST
+          cors: true
+  loadTestConsumer:
+    handler: src/consumers/LoadTestConsumer.handler
+    events:
+      - sqs:
+          arn: ${self:custom.loadTestSqsArn}
+          batchSize: 1
+          maximumBatchingWindow: 2
+          functionResponseType: ReportBatchItemFailures
