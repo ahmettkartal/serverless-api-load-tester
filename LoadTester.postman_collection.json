@@ -1,0 +1,37 @@
+{
+	"info": {
+		"_postman_id": "287c9678-090d-4e79-bce2-54302f2ae5d9",
+		"name": "LoadTester",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6671262",
+		"_collection_link": "https://roofdevelopment.postman.co/workspace/Serverless-API-Load-Tester~6051c54a-96a3-44e8-810f-b70ce56d7459/collection/6671262-287c9678-090d-4e79-bce2-54302f2ae5d9?action=share&source=collection_link&creator=6671262"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"iteration\" : 100,\n    \"request_data\" : {\n        \"method\" : \"post\",\n        \"url\" :\"YOUR_LOAD_TEST_ENDPOINT\",\n        \"data\" : {\n            \"key\" :\"value\"\n        },\n        \"headers\" : {\n            \"Content-Type\": \"application/json\",\n            \"Accept\": \"application/json\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/load-tests",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"load-tests"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
