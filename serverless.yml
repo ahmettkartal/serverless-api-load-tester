@@ -1,10 +1,14 @@
 service: serverless-load-tester
+package:
+  patterns:
+    - 'node_modules/**'
+    - '.dist/**'
 custom:
   loadTestSqsArn: ${file(./config/config.${opt:stage}.json):LOAD_TEST_SQS_QUEUE_ARN}
   preferredRegion: ${file(./config/config.${opt:stage}.json):PREFERRED_REGION}
 provider:
   name: aws
-  runtime: nodejs16.x
+  runtime: nodejs18.x
   region: ${self:custom.preferredRegion}
   environment:
     PROJECT_APP_STAGE: ${file(./config/config.${opt:stage}.json):PROJECT_APP_STAGE}
@@ -23,14 +27,14 @@ provider:
           Resource: "*"
 functions:
   app:
-    handler: app.project_handler
+    handler: .dist/app.project_handler
     events:
       - http:
           path: /load-tests
           method: POST
           cors: true
   loadTestConsumer:
-    handler: src/consumers/LoadTestConsumer.handler
+    handler: .dist/consumers/LoadTestConsumer.handler
     events:
       - sqs:
           arn: ${self:custom.loadTestSqsArn}
