@@ -1,6 +1,6 @@
 {
   "PREFERRED_REGION": "eu-central-1",
   "PROJECT_APP_STAGE": "DEVELOPMENT",
-  "LOAD_TEST_SQS_QUEUE_ARN": "YOUR_SQS_QUEUE_ARN_HERE",
-  "LOAD_TEST_SQS_QUEUE_URL": "YOUR_SQS_QUEUE_URL_HERE"
+  "LOAD_TEST_SQS_QUEUE_ARN": "arn:aws:sqs:eu-central-1:793646736574:load-tester",
+  "LOAD_TEST_SQS_QUEUE_URL": "https://sqs.eu-central-1.amazonaws.com/793646736574/load-tester"
 }
