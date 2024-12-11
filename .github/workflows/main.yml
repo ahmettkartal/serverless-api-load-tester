@@ -25,6 +25,9 @@ jobs:
       - name: Compile typescript
         run: |
           npm run build
+      - name: Test the app
+        run: |
+          npm test
       - name: Deploy app to production stage via serverless framework
         uses: serverless/github-action@v3.2
         with:

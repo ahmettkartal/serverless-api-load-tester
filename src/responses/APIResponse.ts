@@ -149,3 +149,24 @@ export const authorizationFailed = (req: Request, res: Response) => {
         }
     });
 }
+
+export const validationFailed = (errors: any, req: Request, res: Response) => {
+    try {
+        log("ERROR", {
+            request: {body: req.body, url: req.url, method: req.method},
+            response: {message: errors}
+        });
+    } catch (err) {
+        console.log("log err", err);
+    }
+
+    return res.status(400).send({
+        ...base_response,
+        "is_complete": false,
+        "error": {
+            "code": "VALIDATION_FAILED",
+            "message": "Validation Failed",
+            "errors": errors
+        }
+    });
+}
