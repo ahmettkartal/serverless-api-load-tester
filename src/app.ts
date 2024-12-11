@@ -4,7 +4,7 @@ import {connect} from './connections/Mongo';
 import defaultMiddleware from './middlewares/DefaultMiddleware';
 
 // Connect to MongoDB
-//connect();
+connect();
 
 const app: Express = express();
 
