@@ -61,3 +61,25 @@ export const isValidEmail = (value: any, is_optional: boolean = false): boolean 
         throw new Error('Invalid Email');
     }
 }
+
+export const isValidNumber = (value: any, is_optional: boolean = false): boolean => {
+    if (is_optional && !value) {
+        return true;
+    } else if (!isNaN(value)) {
+        return true;
+    } else {
+        throw new Error('Invalid Number');
+    }
+}
+
+export const isValidJSON = (value: any, is_optional: boolean = false): boolean => {
+    if (is_optional && !value) {
+        return true;
+    }
+    try {
+        JSON.parse(value);
+        return true;
+    } catch (e) {
+        throw new Error('Invalid JSON');
+    }
+}

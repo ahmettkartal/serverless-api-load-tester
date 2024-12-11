@@ -15,6 +15,9 @@ provider:
     LOAD_TEST_SQS_QUEUE_ARN: ${file(./config/config.${opt:stage}.json):LOAD_TEST_SQS_QUEUE_ARN}
     LOAD_TEST_SQS_QUEUE_URL: ${file(./config/config.${opt:stage}.json):LOAD_TEST_SQS_QUEUE_URL}
     PREFERRED_REGION: ${file(./config/config.${opt:stage}.json):PREFERRED_REGION}
+    PROJECT_DB_USER: ${file(./config/config.${opt:stage}.json):PROJECT_DB_USER}
+    PROJECT_DB_PASSWORD: ${file(./config/config.${opt:stage}.json):PROJECT_DB_PASSWORD}
+    PROJECT_DB_HOST: ${file(./config/config.${opt:stage}.json):PROJECT_DB_HOST}
   iam:
     role:
       statements:
